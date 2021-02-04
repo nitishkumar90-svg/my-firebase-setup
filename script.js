@@ -37,17 +37,30 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
     }
 
-    const retrieveUsers = () => {
-        ul_tag.innerHTML = ``
+    //.onSnapshot() -> this will continously check the database for updates 
+    const retrieveUsersByUsingSnapshot = () => {
         // query snapshot -> used to get collection from table
-        db.collection(`Users`).orderBy(`time_stamp`).get().then((docRef) => {
+        db.collection(`Users`).orderBy(`time_stamp`).onSnapshot((docRef) => {
+            ul_tag.innerHTML = ``
             docRef.forEach(element => {
                 let singleRecord = element.data()
-                ul_tag.innerHTML+=`<li>${singleRecord.firstName} ${singleRecord.lastName}</li>`
+                ul_tag.innerHTML +=`<li>${singleRecord.firstName} ${singleRecord.lastName}</li>`
             });
         })
     }
-    retrieveUsers()
+
+    const retrieveUsersByUsingGet = () => {
+        // query snapshot -> used to get collection from table
+        db.collection(`Users`).orderBy(`time_stamp`).get().then((docRef) => {
+            ul_tag.innerHTML = ``
+            docRef.forEach(element => {
+                let singleRecord = element.data()
+                ul_tag.innerHTML +=`<li>${singleRecord.firstName} ${singleRecord.lastName}</li>`
+            });
+        })
+    }
+
+    retrieveUsersByUsingSnapshot()
     //#endregion
 })
 
