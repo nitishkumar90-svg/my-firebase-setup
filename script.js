@@ -49,6 +49,18 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
     }
 
+    //.onSnapshot() -> this will continously check the database for updates 
+    const retrieveUsersByLimit = () => {
+        // query snapshot -> used to get collection from table
+        db.collection(`Users`).orderBy(`time_stamp`).limit(2).onSnapshot((docRef) => {
+            ul_tag.innerHTML = ``
+            docRef.forEach(element => {
+                let singleRecord = element.data()
+                ul_tag.innerHTML +=`<li>${singleRecord.firstName} ${singleRecord.lastName}</li>`
+            });
+        })
+    }
+
     const retrieveUsersByUsingGet = () => {
         // query snapshot -> used to get collection from table
         db.collection(`Users`).orderBy(`time_stamp`).get().then((docRef) => {
@@ -60,7 +72,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         })
     }
 
-    retrieveUsersByUsingSnapshot()
+    retrieveUsersByLimit()
     //#endregion
 })
 
