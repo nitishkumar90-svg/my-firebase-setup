@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Setup</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        form div {
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form1">
+        <div>
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName">
+        </div>
+        <div>
+            <label for="LastName">Last Name</label>
+            <input type="text" id="LastName">
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-firestore.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBZ_Gi9llMyMSD5nggXDgo_K_oZ25l_dNw",
+            authDomain: "wddm-121.firebaseapp.com",
+            projectId: "wddm-121",
+            storageBucket: "wddm-121.appspot.com",
+            messagingSenderId: "81901885462",
+            appId: "1:81901885462:web:c657bcf348b847660abd37"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
