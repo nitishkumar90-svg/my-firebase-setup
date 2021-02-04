@@ -4,6 +4,7 @@ const log = (customLog, info) => {
     console.log(customLog, info)
 }
 
+
 //DOM Content Loaded
 document.addEventListener('DOMContentLoaded', (event) => {
     log('HTML loaded!!')
@@ -12,6 +13,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const last_name = document.getElementById(`LastName`)
     const db = firebase.firestore()
     const ul_tag = document.getElementById(`result`)
+    
+    //basically this will call only when submit button is hit. 
     form_content.addEventListener(`submit`, (event) => {
         event.preventDefault()
         if (!first_name.value || !last_name.value)
@@ -20,7 +23,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         addUser(first_name.value, last_name.value)
         resetForm()
     })
-
 
     //#region functions
     const resetForm = () => {
@@ -39,7 +41,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     //.onSnapshot() -> this will continously check the database for updates 
     const retrieveUsersByUsingSnapshot = () => {
-        // query snapshot -> used to get collection from table
+        // querySnapshot instead of docRef -> used to get collection from table
         db.collection(`Users`).orderBy(`time_stamp`).onSnapshot((docRef) => {
             ul_tag.innerHTML = ``
             docRef.forEach(element => {
@@ -62,7 +64,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     const retrieveUsersByUsingGet = () => {
-        // query snapshot -> used to get collection from table
         db.collection(`Users`).orderBy(`time_stamp`).get().then((docRef) => {
             ul_tag.innerHTML = ``
             docRef.forEach(element => {
@@ -71,8 +72,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
             });
         })
     }
-
+    
+    
     retrieveUsersByLimit()
+
     //#endregion
 })
 
